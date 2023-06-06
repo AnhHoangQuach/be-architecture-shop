@@ -1,7 +1,7 @@
 'use strict'
 
 const { Types } = require('mongoose')
-const { product } = require('../../models/product.model')
+const { product } = require('../product.model')
 const { getSelectData, unGetSelectData } = require('../../utils')
 
 const findAllDraftsForShop = async ({ query, limit, skip }) => {
