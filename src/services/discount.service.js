@@ -33,11 +33,11 @@ class DiscountService {
     } = payload
 
     if (new Date() < new Date(start_date) || new Date() > new Date(end_date)) {
-      throw BadRequestError('Discount code has expired')
+      throw new BadRequestError('Discount code has expired')
     }
 
     if (new Date(start_date) >= new Date(end_date)) {
-      throw BadRequestError('Start date must be before end date')
+      throw new BadRequestError('Start date must be before end date')
     }
 
     const foundDiscount = await discount
@@ -48,7 +48,7 @@ class DiscountService {
       .lean()
 
     if (foundDiscount && foundDiscount.discount_is_active) {
-      throw BadRequestError('Discount code already exists')
+      throw new BadRequestError('Discount code already exists')
     }
 
     const newDiscount = await discount.create({
